@@ -11,7 +11,7 @@ const sass = gulpSass(dartSass);
 
 export const scss = () => {
 	return app.gulp.src(app.path.src.scss, {
-			sourcemaps: true
+			sourcemaps: app.isDev
 		})
 		.pipe(app.plugins.plumber(
 			app.plugins.notify.onError({
@@ -22,18 +22,30 @@ export const scss = () => {
 		.pipe(sass({
 			outputStyle: 'expanded'
 		}))
-		.pipe(groupCssMediaQueries())
-		.pipe(webpcss({
-			webpClass: ".webp", // Браузер поддерживает изображения webp
-			nowebpClass: ".nowebp" // Браузер не поддерживает изображения webp
-		}))
-		.pipe(autoprefixer({
-			grid: true,
-			overrideBrowserslist: ["last 3 version"],
-			cascade: true
-		}))
+		.pipe(app.plugins.if(
+			app.isBuild,
+			groupCssMediaQueries()
+		))
+		.pipe(app.plugins.if(
+			app.isBuild,
+			webpcss({
+				webpClass: ".webp", // Браузер поддерживает изображения webp
+				nowebpClass: ".nowebp" // Браузер не поддерживает изображения webp
+			})
+		))
+		.pipe(app.plugins.if(
+			app.isBuild,
+			autoprefixer({
+				grid: true,
+				overrideBrowserslist: ["last 3 version"],
+				cascade: true
+			})
+		))
 		.pipe(app.gulp.dest(app.path.build.css)) // Не сжатый файл
-		.pipe(cleanCss()) // Сжатие файла
+		.pipe(app.plugins.if(
+			app.isBuild,
+			cleanCss()
+		)) // Сжатие файла
 		.pipe(rename({
 			extname: ".min.css"
 		}))
