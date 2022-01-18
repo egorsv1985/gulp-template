@@ -178,9 +178,11 @@
   font-style: normal;
 }
 
+.nowebp body {
+  background: url("../img/water.png") 0 0 no-repeat; }
+
 body {
   background-color: darkorange;
-  background: url("../img/water.png") 0 0 no-repeat;
 }
 
 body h1 {

@@ -30,7 +30,7 @@ export const scss = () => {
 			app.isBuild,
 			webpcss({
 				webpClass: ".webp", // Браузер поддерживает изображения webp
-				nowebpClass: ".nowebp" // Браузер не поддерживает изображения webp
+				noWebpClass: ".nowebp" // Браузер не поддерживает изображения webp
 			})
 		))
 		.pipe(app.plugins.if(

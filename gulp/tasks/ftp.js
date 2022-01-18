@@ -10,7 +10,7 @@ import {
 export const ftp = () => {
 	configFTP.log = util.log;
 	const ftpConnect = vinylFTP.create(configFTP);
-	return AutomaticPrefetchPlugin.gulp.src(`${app.path.buildFolder}/**/*.*`, {})
+	return app.gulp.src(`${app.path.buildFolder}/**/*.*`, {})
 		.pipe(app.plugins.plumber(
 			app.plugins.notify.onError({
 				title: "FTP",

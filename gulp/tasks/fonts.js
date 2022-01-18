@@ -85,7 +85,7 @@ export const fontsStyle = () => {
 				console.log("Файл scss/fonts.scss уже существует. Для обновления файла нужно его удалить!");
 			}
 		}
-	})
+	});
 	return app.gulp.src(`${app.path.srcFolder}`);
 
 	function cb() {}
