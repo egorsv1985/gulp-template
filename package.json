@@ -1,5 +1,5 @@
 {
-  "name": "gulp-template",
+  "name": "gulp-2022",
   "version": "1.0.0",
   "description": "",
   "main": "gulpfile.js",
@@ -9,12 +9,14 @@
     "build": "gulp build --build",
     "zip": "gulp deployZIP --build",
     "deploy": "gulp deployFTP --build",
-    "svgSprive": "gulp svgSprive"
+    "svgSprive": "gulp svgSprite",
+    "purgecss": "gulp purgecss"
   },
   "author": "Sabancev Egor",
   "license": "ISC",
   "dependencies": {
-    "gulp-cli": "^2.3.0"
+    "gulp-cli": "^2.3.0",
+    "jquery": "^3.6.0"
   },
   "devDependencies": {
     "browser-sync": "latest",
@@ -31,6 +33,7 @@
     "gulp-notify": "latest",
     "gulp-plumber": "latest",
     "gulp-pug": "latest",
+    "gulp-purgecss": "^4.0.3",
     "gulp-rename": "latest",
     "gulp-replace": "latest",
     "gulp-sass": "latest",

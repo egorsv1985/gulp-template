@@ -9,8 +9,8 @@ export const svgSprive = () => {
 			})))
 		.pipe(svgSprite({
 			mode: {
-				symbol: {
-					sprite: '../icons/icons.svg',
+				stack: {
+					sprite: '../icons/sprite.svg',
 					// Создавать страницу с перечнем иконок
 					example: true
 				}

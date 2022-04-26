@@ -11,6 +11,7 @@ import {
 	plugins
 } from "./gulp/config/plugins.js";
 
+
 // Передаем значения в глобальную переменную
 global.app = {
 	isBuild: process.argv.includes('--build'),
@@ -51,38 +52,39 @@ import {
 	svgSprive
 } from "./gulp/tasks/svgSprive.js";
 import {
+	purgeCss
+} from "./gulp/tasks/purgecss.js";
+import {
 	zip
 } from "./gulp/tasks/zip.js";
 // import {
 // 	ftp
 // } from "./gulp/tasks/ftp.js";
 
-// Наблюдатель за измениями в файлах
+
+// Наблюдатель за изменениями в файлах
 function watcher() {
 	gulp.watch(path.watch.files, copy);
-	gulp.watch(path.watch.html, html); //gulp.series(html, ftp) чтобы файлы менялись на сервере
-	gulp.watch(path.watch.scss, scss); //gulp.series(scss, ftp)
-	gulp.watch(path.watch.js, js); //gulp.series(js, ftp)
-	gulp.watch(path.watch.images, images); //gulp.series(images, ftp)
-}
-
-export {
-	svgSprive
+	gulp.watch(path.watch.html, html);
+	gulp.watch(path.watch.scss, scss);
+	gulp.watch(path.watch.js, js);
+	gulp.watch(path.watch.images, images);
 }
 
 // Последовательная обработка шрифтов
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle);
 
-// Основные задачи
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images));
+const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images))
 
-// Построение сценариев выполнения задач
+// Построение сценариев выполненных задач
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 const build = gulp.series(reset, mainTasks);
 const deployZIP = gulp.series(reset, mainTasks, zip);
+const svgSprite = svgSprive;
+const purgecss = purgeCss;
 // const deployFTP = gulp.series(reset, mainTasks, ftp);
 
-//Экспорт сценариев
+// Экспорт сценариев
 export {
 	dev
 }
@@ -91,6 +93,12 @@ export {
 }
 export {
 	deployZIP
+}
+export {
+	svgSprite
+}
+export {
+	purgecss
 }
 // export {
 // 	deployFTP

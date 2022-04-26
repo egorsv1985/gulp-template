@@ -16,23 +16,23 @@ export const path = {
 	},
 	src: {
 		js: `${srcFolder}/js/app.js`, // Можно переименовать main.js
-		images: `${srcFolder}/img/**/*.{jpg, jpeg, ico, png, gif, webp}`,
+		images: `${srcFolder}/img/**/*.{jpg,jpeg,ico,png,gif,webp}`,
 		svg: `${srcFolder}/img/**/*.svg`,
 		scss: `${srcFolder}/scss/style.scss`,
-		html: `${srcFolder}/*.pug`,
+		html: `${srcFolder}/*.html`,
 		files: `${srcFolder}/files/**/*.*`,
-		svgicons: `${srcFolder}/svgicons/*.svg`
+		svgicons: `${srcFolder}/img/svgicons/**/*.svg`
 	},
 	watch: {
 		js: `${srcFolder}/js/**/*.js`,
-		images: `${srcFolder}/img/**/*.{ipg, jpeg, ico, svg, png, gif, webp}`,
+		images: `${srcFolder}/img/**/*.{ipg,jpeg,ico,svg,png,gif,webp}`,
 		scss: `${srcFolder}/scss/**/*.scss`,
-		html: `${srcFolder}/**/*.pug`,
+		html: `${srcFolder}/**/*.html`,
 		files: `${srcFolder}/files/**/*.*`
 	},
 	clean: buildFolder,
 	buildFolder: buildFolder,
 	srcFolder: srcFolder,
 	rootFolder: rootFolder,
-	ftp: ''
+	ftp: 'test'
 }

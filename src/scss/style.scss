@@ -1,24 +1,30 @@
-@import "fonts";
+// lib
 
-body {
-	background-color: darkorange;
+// abstracts
 
-	h1 {
-		color: red;
-	}
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
 
-	background:url("@img/water.png") 0 0 no-repeat;
-}
+// base
+@import "./base/normalize";
 
-@media (max-width: 768px) {
-	body {
-		background-color: red;
-	}
-}
+// @import "fonts";
 
 
-@media (max-width: 768px) {
-	h1 {
-		font-size: 20px;
-	}
-}
+@import "./base/sections";
+@import "./base/tipography";
+@import "./base/global";
+
+// components
+@import "./components/burger";
+@import "./components/link";
+@import "./components/button";
+@import "./components/inputs";
+
+// sections
+
+
+// block
+@import "./blocks/header";
+
+@import "./blocks/footer";

@@ -10,7 +10,10 @@ export const html = () => {
 				title: "HTML",
 				message: 'Error: <%= error.message %>'
 			})))
-		// .pipe(fileinclude())
+		.pipe(fileinclude({
+			prefix: '@@',
+			basepath: '@file'
+		  }))
 		.pipe(pug({
 			// Сжатие HTML файлов
 			pretty: true,
@@ -20,29 +23,22 @@ export const html = () => {
 		.pipe(app.plugins.replace(/@img\//g, 'img/'))
 		.pipe(
 			app.plugins.if(
-				app.isBuild,
-				webpHtmlNosvg()
-			)
-		)
-
-		.pipe(
-			app.plugins.if(
-				app.isBuild,
-				versionNumber({
-					'value': '%DT%',
-					'append': {
-						'key': '_v',
-						'cover': 0,
-						'to': [
-							'css',
-							'js',
-						]
-					},
-					'output': {
-						'file': 'gulp/version.json'
-					}
-				})
-			))
+				app.isBuild, webpHtmlNosvg()))
+		.pipe(app.plugins.if(
+			app.isBuild, versionNumber({
+				'value': '%DT%',
+				'append': {
+					'key': '_v',
+					'cover': 0,
+					'to': [
+						'css',
+						'js',
+					]
+				},
+				'output': {
+					'file': 'gulp/version.json'
+				}
+			})))
 		.pipe(app.gulp.dest(app.path.build.html))
 		.pipe(app.plugins.browsersync.stream());
 }

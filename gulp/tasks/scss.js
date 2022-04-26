@@ -23,29 +23,21 @@ export const scss = () => {
 			outputStyle: 'expanded'
 		}))
 		.pipe(app.plugins.if(
-			app.isBuild,
-			groupCssMediaQueries()
-		))
+			app.isBuild, groupCssMediaQueries()))
 		.pipe(app.plugins.if(
-			app.isBuild,
-			webpcss({
+			app.isBuild, webpcss({
 				webpClass: ".webp", // Браузер поддерживает изображения webp
 				noWebpClass: ".nowebp" // Браузер не поддерживает изображения webp
-			})
-		))
+			})))
 		.pipe(app.plugins.if(
-			app.isBuild,
-			autoprefixer({
+			app.isBuild, autoprefixer({
 				grid: true,
 				overrideBrowserslist: ["last 3 version"],
 				cascade: true
-			})
-		))
+			})))
 		.pipe(app.gulp.dest(app.path.build.css)) // Не сжатый файл
 		.pipe(app.plugins.if(
-			app.isBuild,
-			cleanCss()
-		)) // Сжатие файла
+			app.isBuild, cleanCss())) // Сжатие файла
 		.pipe(rename({
 			extname: ".min.css"
 		}))
